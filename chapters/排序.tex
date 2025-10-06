@@ -1,0 +1,185 @@
+
+\chapter{排序}
+
+\section{概念}
+
+\subsection{排序}
+重新排列表中元素，使元素满足按关键字有序的过程。
+\begin{enumerate}
+    \item 输入：n个记录\(R_1, ..., R_n\)，对应关键字为\(k_1, ..., k_n\)
+    \item 输出：输入序列的一个重排\(R'_1, ..., R'_n\)，使得\(k'_1 <= ... <= k'_n\)，比较符号任意。
+\end{enumerate}
+
+
+\subsection{算法稳定性}
+若待排序表中有两个元素关键字相同，排序前后两个元素前后位置没有改变，则该排序算法是稳定的。
+
+
+\subsection{算法类别}
+根据数据元素是否完全放在内存中，排序算法分为两类：
+\begin{enumerate}
+    \item 内部排序\begin{itemize}
+        \item 插入排序
+        \item 选择排序
+        \item 冒泡排序
+    \end{itemize}
+    \item 外部排序\begin{itemize}
+        \item 拓扑排序
+    \end{itemize}
+\end{enumerate}
+
+
+\section{插入排序}
+
+\subsection{直接插入排序}
+
+\subsubsection{效率}
+
+\paragraph{空间}
+\(O(1)\)
+
+\paragraph{时间}
+\begin{itemize}
+    \item 最好情况下，元素已有序，复杂度\(O(n)\);
+    \item 最坏情况下，表中元素顺序与结果顺序相反，复杂度\(O(n^2)\)
+    \item 平均情况下，取最好情况与最坏情况的平均值，总的比较次数与移动次数均约为\(n^2 / 4\)，复杂度\(O(n^2)\)
+\end{itemize}
+
+
+\subsubsection{适用于}
+顺序存储和链式存储的线性表，采用链式存储无需移动元素
+
+
+\subsection{折半插入排序}
+
+\subsubsection{效率}
+
+\paragraph{时间}
+比较次数与初始状态无关，复杂度约\(O(n\log_2n)\)；但移动次数未改变，依赖于初始状态。综上，时间复杂度为\(O(n^2)\)
+
+
+\subsubsection{适用于}
+顺序存储的线性表，不稳定
+
+
+\subsection{希尔排序}
+也称缩小增量排序。
+
+\subsubsection{思想}
+先将待排表分为若干形如\([i, i + d, i + 2d, ..., i + kd]\)的特殊子表，即把相隔某个增量的记录组成一个子表，对各个子表进行直接插入排序，当整个表基本有序时，对全体进行一次直接插入排序。
+
+\subsubsection{效率}
+
+\paragraph{空间}
+\(O(1)\)
+
+\paragraph{时间}
+时间复杂度依赖于增量序列的函数，涉及数学上仍未解决的难题。当n在某个特定范围时，时间复杂度约为\(O(n^{1.3})\)；最坏情况下复杂度为\(O(n^2)\)
+
+
+\subsubsection{适用于}
+顺序存储的线性表
+
+
+\section{交换排序}
+
+\subsection{冒泡}
+稳定
+
+\subsubsection{效率}
+\paragraph{空间}
+\(O(1)\)
+
+\paragraph{时间}
+
+最坏情况时间复杂度\(O(n^2)\)，平均时间复杂度\(O(n^2)\)
+
+
+\subsubsection{适用于}
+顺序存储和链式存储的线性表
+
+
+\subsection{快速}
+不稳定。
+
+\subsubsection{思想}
+在待排表中任取一个元素pivot作为枢轴（或基准），通常取首元素，通过一趟排序将待排表分为两部分，左部分中所有元素小于pivot，右部分中所有元素大于pivot。这个过程称为一次划分。分别递归地对两个子表重复上述过程，直至每个部分中只有一个元素或为空位置。
+\begin{enumerate}
+    \item 设两个指针i，j。i指向数组首，j指向数组尾。通常以首元素为枢轴，则从j开始。
+    \item j向前找到第一个小于枢轴的元素，将该元素移动到i所在位置；
+    \item i向后找到第一个大于枢轴的元素，将该元素移动到j所在位置；
+    \item 重复2、3，直到i = j。
+\end{enumerate}
+
+
+\subsubsection{效率}
+
+\paragraph{空间}
+最好情况\(O(\log_2n)\)最坏情况下，进行\(n - 1\)次递归调用，栈深度\(O(n)\)，平均情况\(O(\log_2n)\)。递归次数与分区处理顺序无关。
+
+\paragraph{时间}
+最坏情况\(O(n^2)\)
+
+
+\subsubsection{适用于}
+顺序存储的线性表
+
+
+\subsubsection{结论}
+\begin{itemize}
+    \item 对n个元素进行第一趟快排后，会确定一个基准元素，根据这个基准元素的位置有两种情况：\begin{enumerate}
+    \item 基准元素在首段或尾端。对剩下n - 1个元素构成的子序列进行第二趟快排，再确定一个基准元素。两趟至少确定两个基准元素的最终位置，其中至少一个基准元素在首端或尾端。
+    \item 基准元素不在首端或尾端。第二趟对两个子序列分别划分，各确定一个基准元素，两趟至少确定三个元素最终位置。
+    \end{enumerate}
+    \item 使用快速排序处理时，当表本身已有序或逆序时，速度最慢；当每趟枢轴值都把表等分为长度相近的两个子表时，速度最快。
+\end{itemize}
+
+
+\section{选择排序}
+
+\subsection{简单选择排序}
+不稳定。
+
+\subsubsection{效率}
+
+\paragraph{空间}
+\(O(1)\)
+
+\paragraph{时间}
+移动次数最好0次，最坏不超过\(3(n - 1)\)次；比较次数始终\(n(n - 1) / 2\)次；时间复杂度始终\(O(n^2)\)。
+
+
+\subsubsection{适用于}
+顺序存储和链式存储的线性表，及关键字较少的情况。
+
+
+\subsection{堆排序}
+
+\subsubsection{堆}
+n个关键字序列L[1, ..., n]称为堆，当且仅当该序列满足：
+\begin{enumerate}
+    \item L(i) >= L(2i) 且 L(i) >= L(2i + i)\ \ 或
+    \item L(i) <= L(2i) 且 L(i) <= L(2i + 1)\ \ \((1 <= i <= \lfloor n / 2\rfloor\)
+\end{enumerate}
+
+可将堆视为一棵完全二叉树。满足条件1的堆称为大根堆（大顶堆），大根堆的最大元素放在根结点，其任意一个非根结点的值小于等于其双亲结点值。满足条件2的堆为小根堆（小顶堆），小根堆的定义相反。
+
+\paragraph{堆的应用}
+堆排序和优先队列。
+
+\paragraph{建堆}
+
+
+\subsubsection{思想}
+\begin{enumerate}
+    \item 以大根堆为例。先建成初始堆，由于堆本身特点，堆顶元素为最大值；
+    \item 输出堆顶元素，通常将堆底元素送入堆顶此时根结点不满足大根堆的性质；
+    \item 堆被破坏，堆顶元素向下调整使其保持大顶堆性质，再输出堆顶元素；
+    \item 重复步骤，直到堆中仅一个元素。
+\end{enumerate}
+
+
+
+
+
+
