@@ -1,0 +1,16 @@
+
+\chapter{数组}
+
+\section{特殊矩阵压缩存储}
+
+\subsection{对称矩阵}
+n阶对称矩阵放在一维数组\([\dfrac{n(n + 1)}{2}]\)中。
+
+\subsubsection{下三角行优先}
+元素下标对应关系：
+\[k = \begin{cases}
+    \dfrac{i(i - 1)}{2} + j - 1\,\,\,(i >= j\text{下三角区域}) \\
+    \dfrac{j(j - 1)}{2} + i - 1\,\,\,(i < j)
+\end{cases}\]
+
+
