@@ -9,8 +9,22 @@ n阶对称矩阵放在一维数组\([\dfrac{n(n + 1)}{2}]\)中。
 \subsubsection{下三角行优先}
 元素下标对应关系：
 \[k = \begin{cases}
-    \dfrac{i(i - 1)}{2} + j - 1\,\,\,(i >= j\text{下三角区域}) \\
+    \dfrac{i(i - 1)}{2} + j - 1\,\,\,(i >= j\text{下三角}) \\
     \dfrac{j(j - 1)}{2} + i - 1\,\,\,(i < j)
 \end{cases}\]
 
+
+\subsection{三角矩阵}
+与对称矩阵类似，需额外存储一次对角线上方常量。放在一维数组\([\dfrac{n(n + 1)}{2} + 1]\)中。
+
+
+\subsection{对角矩阵}
+又称\textbf{带状矩阵}。
+
+\subsubsection{三对角矩阵}
+当\(|i - j| > 1\)时，有\(a_{i, j} = 0\)。存放在一维数组[\(2 * i + j - 3\)]位置。存放在[k]的元素，\(i = \lfloor\dfrac{k + 1}{3} + 1\rfloor, j = k - 2 * i + 3\)
+
+
+\subsection{稀疏矩阵}
+压缩后\textbf{失去}\textit{随机存取}特性。
 
