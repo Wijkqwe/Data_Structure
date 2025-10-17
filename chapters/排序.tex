@@ -114,15 +114,15 @@
 
 \subsubsection{效率}
 
-\paragraph{空间}
+\subparagraph{空间}
 最好情况\(O(\log_2n)\)最坏情况下，进行\(n - 1\)次递归调用，栈深度\(O(n)\)，平均情况\(O(\log_2n)\)。递归次数与分区处理顺序无关。
 
-\paragraph{时间}
+\subparagraph{时间}
 最坏情况\(O(n^2)\)
 
 
 \subsubsection{适用于}
-顺序存储的线性表
+顺序存储的线性表。
 
 
 \subsubsection{结论}
@@ -156,19 +156,7 @@
 \subsection{堆排序}
 
 \subsubsection{堆}
-n个关键字序列L[1, ..., n]称为堆，当且仅当该序列满足：
-\begin{enumerate}
-    \item L(i) >= L(2i) 且 L(i) >= L(2i + i)\ \ 或
-    \item L(i) <= L(2i) 且 L(i) <= L(2i + 1)\ \ \((1 <= i <= \lfloor n / 2\rfloor\)
-\end{enumerate}
-
-可将堆视为一棵完全二叉树。满足条件1的堆称为大根堆（大顶堆），大根堆的最大元素放在根结点，其任意一个非根结点的值小于等于其双亲结点值。满足条件2的堆为小根堆（小顶堆），小根堆的定义相反。
-
-\paragraph{堆的应用}
-堆排序和优先队列。
-
-\paragraph{建堆}
-
+见\ref{堆}。
 
 \subsubsection{思想}
 \begin{enumerate}
@@ -179,6 +167,16 @@ n个关键字序列L[1, ..., n]称为堆，当且仅当该序列满足：
 \end{enumerate}
 
 
+\section{归并排序}
+
+
+\section{基数排序}
+
+
+\section{计数排序}
+
+
+\section{内部排序算法}
 
 
 
